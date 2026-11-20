@@ -4,6 +4,8 @@ A macOS study tool that reads PDFs aloud with a natural-sounding neural voice. C
 
 Everything runs locally: no cloud services, no accounts, and nothing is saved except where you stopped reading.
 
+<p align="center"><img src="docs/screenshot.png" alt="PDF Study Reader with a selected passage ready to play" width="80%"></p>
+
 ## Features
 
 - **Click to read.** Click a word and press Play to read from that point on.
