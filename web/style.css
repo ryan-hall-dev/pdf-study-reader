@@ -1,0 +1,168 @@
+:root {
+  --bg: #1b1c1f;
+  --panel: #232428;
+  --panel-border: #33353b;
+  --text: #e8e8ea;
+  --muted: #9a9ca3;
+  --accent: #e0a245;
+  --accent-text: #1b1c1f;
+  --start-mark: rgba(40, 140, 255, 0.35);
+  --play-mark: rgba(224, 162, 69, 0.45);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- toolbar */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--panel-border);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.spacer { flex: 1; }
+
+.divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--panel-border);
+  margin: 0 4px;
+}
+
+.file-name {
+  color: var(--muted);
+  max-width: 34ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--panel-border);
+  background: #2c2e33;
+  color: var(--text);
+  font: inherit;
+  padding: 6px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  min-width: 64px;
+}
+.btn:hover:not(:disabled) { background: #35373d; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+.btn-primary:hover:not(:disabled) { background: #eab35e; }
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+
+select {
+  font: inherit;
+  color: var(--text);
+  background: #2c2e33;
+  border: 1px solid var(--panel-border);
+  border-radius: 7px;
+  padding: 5px 8px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* ---------- status bar */
+
+.statusbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 32px;
+  padding: 6px 16px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--panel-border);
+  background: #1f2023;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#statusText { flex: 1; }
+#statusText.error { color: #ff7b72; }
+
+/* ---------- viewer */
+
+.viewer {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background: #121315;
+}
+
+.pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0 48px;
+}
+
+.page {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  --scale-round-x: 1px;
+  --scale-round-y: 1px;
+}
+.page canvas { display: block; }
+
+.empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.empty[hidden] { display: none; }
+
+/* Sentence highlights (CSS Custom Highlight API) */
+::highlight(startmark) { background-color: var(--start-mark); }
+::highlight(playing) { background-color: var(--play-mark); }
+
+/* Click or drag-select a word to mark where reading starts */
+.page .textLayer span { cursor: text; }

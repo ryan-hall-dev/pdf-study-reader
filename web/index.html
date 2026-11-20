@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PDF to Audio Book</title>
+  <link rel="stylesheet" href="vendor/textlayer.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="toolbar">
+    <button id="openBtn" class="btn" title="Open a PDF (⌘O)">Open PDF</button>
+    <span id="fileName" class="file-name"></span>
+
+    <div class="spacer"></div>
+
+    <label class="field">
+      <span>Voice</span>
+      <select id="voiceSelect"></select>
+    </label>
+    <label class="field">
+      <span>Speed</span>
+      <select id="speedSelect">
+        <option value="0.85">0.85×</option>
+        <option value="0.9">0.9×</option>
+        <option value="1">1×</option>
+        <option value="1.1">1.1×</option>
+        <option value="1.2">1.2×</option>
+        <option value="1.35">1.35×</option>
+        <option value="1.5">1.5×</option>
+      </select>
+    </label>
+
+    <div class="divider"></div>
+
+    <button id="backBtn" class="btn" title="Back one sentence (←)" disabled>‹</button>
+    <button id="playBtn" class="btn btn-primary" title="Play / pause (Space)" disabled>Play</button>
+    <button id="nextBtn" class="btn" title="Forward one sentence (→)" disabled>›</button>
+    <button id="stopBtn" class="btn" title="Stop playback (Esc)" disabled>Stop</button>
+    <label class="toggle" title="Scroll to keep the spoken sentence in view">
+      <input type="checkbox" id="followToggle" checked> Follow
+    </label>
+  </header>
+
+  <div class="statusbar">
+    <span id="statusText">Open a PDF to begin.</span>
+  </div>
+
+  <main id="viewer" class="viewer">
+    <div id="emptyState" class="empty">
+      <p>Open a PDF. Click a word to read from there, or select a passage to hear just that, then press Play.</p>
+      <button id="emptyOpenBtn" class="btn btn-primary">Open PDF</button>
+    </div>
+    <div id="pages" class="pages"></div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
